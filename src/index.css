@@ -3,30 +3,25 @@
 @tailwind utilities;
 
 @layer base {
-  body {
+  html, body {
+    height: 100%;
+    margin: 0;
     @apply font-montserrat text-white bg-black;
     background-image: url('/texture.png');
     background-blend-mode: overlay;
-    
-    height: 100%;           /* Assure que le body prend toute la hauteur de la fenêtre */
-    margin: 0;              /* Retire les marges par défaut */
-    overflow: hidden;       /* Désactive le défilement */
     display: flex;
     flex-direction: column;
-  }
-
-  html {
-    height: 100%;           /* S'assure que la balise html prend aussi toute la hauteur */
+    overflow-x: hidden;
   }
 
   .main-content {
-    height: calc(100vh - 50px); /* Ajuste la hauteur de la section principale, en laissant de la place pour le footer */
-    overflow: hidden;       /* Empêche le défilement au sein de cette section */
-    flex-grow: 1;           /* Permet au contenu principal d'occuper toute la place disponible */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    overflow: hidden;
   }
 
   .font-dancing {
@@ -40,33 +35,32 @@
 
 @layer utilities {
   .shadow-glow {
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2), 
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2),
                 0 0 20px rgba(255, 255, 255, 0.1);
   }
-  
+
   .animate-fadeIn {
     animation: fadeIn 1s ease-in forwards;
   }
-  
+
   .animate-pulse-slow {
     animation: pulse 3s infinite;
   }
-  
+
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
   }
-  
+
   @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.7; }
   }
 }
 
-/* Si tu as des images, t'assure que rien ne dépasse de l'écran */
 img {
   max-width: 100%;
-  height: auto;  /* La hauteur s'ajustera proportionnellement */
+  height: auto;
 }
 
 @media (max-height: 700px) {
@@ -89,46 +83,49 @@ img {
 }
 
 @media (max-width: 768px) {
+  html, body {
+    height: auto;
+    overflow-y: auto; /* ✅ permet de scroller sur mobile */
+  }
+
+  .main-content {
+    height: auto;
+    padding: 16px;
+    overflow: visible;
+  }
+
   .countdown-container {
     display: flex;
-    justify-content: center; /* Centrer les éléments du countdown */
+    justify-content: center;
     align-items: center;
     width: 100%;
   }
 
   .countdown {
     display: flex;
-    justify-content: space-between; /* Garder tous les éléments de la countdown sur la même ligne */
-    gap: 20px; /* Un petit espace entre chaque bloc de temps */
+    flex-wrap: nowrap; /* ✅ force les éléments sur une seule ligne */
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
   }
 
   .countdown-item {
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 1;
   }
 
   .countdown-item span {
-    font-size: 1.5rem; /* Taille ajustée pour une meilleure lisibilité sur mobile */
+    font-size: 1.5rem;
   }
 
-  .main-content {
-    padding: 16px; /* Ajout de padding pour éviter que le contenu soit trop collé aux bords */
-    overflow: visible; /* Permet de défiler le contenu sur mobile */
+  .flyer-image {
+    max-width: 90%;
   }
 
   footer {
     margin-top: 16px;
     font-size: 12px;
-  }
-
-  /* Adaptation du flyer pour qu'il prenne moins de place sur mobile */
-  .flyer-image {
-    max-width: 90%;
-  }
-
-  /* Empêche le défilement horizontal sur mobile */
-  body {
-    overflow-x: hidden;
   }
 }
