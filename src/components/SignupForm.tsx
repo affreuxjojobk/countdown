@@ -20,37 +20,37 @@ const SignupForm: React.FC = () => {
   };
 
   return (
-    <div className="w-full p-6 rounded-lg backdrop-blur-sm border border-white/10">
-      <h3 className="text-xl mb-4 text-center">Stay Connected...</h3>
+    <div className="w-full p-4 sm:p-6 rounded-lg backdrop-blur-sm border border-white/10">
+      <h3 className="text-lg sm:text-xl mb-4 text-center">Stay Connected...</h3>
       
       {submitted ? (
         <div className="p-3 bg-white/10 rounded text-center animate-fadeIn">
           Thank you! We'll keep you updated.
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-2">
+        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Your email address"
             required
-            className="flex-grow p-3 rounded bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all"
+            className="flex-grow p-2 sm:p-3 rounded bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all"
           />
           <button
             type="submit"
-            className="p-3 bg-white text-black rounded font-bold hover:bg-gray-200 transition-colors"
+            className="p-2 sm:p-3 bg-white text-black rounded font-bold hover:bg-gray-200 transition-colors"
           >
             NOTIFY ME
           </button>
         </form>
       )}
       
-      <p className="mt-4 text-xs opacity-60 text-center">
+      <p className="mt-4 text-[10px] sm:text-xs opacity-60 text-center">
         We respect your privacy and will only send updates about this event.
       </p>
     </div>
   );
 };
 
-export default SignupForm;
+export default SignupForm
