@@ -23,19 +23,16 @@
     height: calc(100vh - 50px); /* Ajuste la hauteur de la section principale, en laissant de la place pour le footer */
     overflow: hidden;       /* Empêche le défilement au sein de cette section */
     flex-grow: 1;           /* Permet au contenu principal d'occuper toute la place disponible */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
-
-  /*.footer {
-    text-align: center;
-    padding: 10px;
-    /*margin-top: auto;       /* S'assure que le footer reste en bas de la page
-    font-size: 14px;
-  }*/
 
   .font-dancing {
     font-family: 'Dancing Script', cursive;
   }
-  
+
   .font-playfair {
     font-family: 'Playfair Display', serif;
   }
@@ -88,5 +85,50 @@ img {
 
   footer {
     margin-top: 8px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .countdown-container {
+    display: flex;
+    justify-content: center; /* Centrer les éléments du countdown */
+    align-items: center;
+    width: 100%;
+  }
+
+  .countdown {
+    display: flex;
+    justify-content: space-between; /* Garder tous les éléments de la countdown sur la même ligne */
+    gap: 20px; /* Un petit espace entre chaque bloc de temps */
+  }
+
+  .countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .countdown-item span {
+    font-size: 1.5rem; /* Taille ajustée pour une meilleure lisibilité sur mobile */
+  }
+
+  .main-content {
+    padding: 16px; /* Ajout de padding pour éviter que le contenu soit trop collé aux bords */
+    overflow: visible; /* Permet de défiler le contenu sur mobile */
+  }
+
+  footer {
+    margin-top: 16px;
+    font-size: 12px;
+  }
+
+  /* Adaptation du flyer pour qu'il prenne moins de place sur mobile */
+  .flyer-image {
+    max-width: 90%;
+  }
+
+  /* Empêche le défilement horizontal sur mobile */
+  body {
+    overflow-x: hidden;
   }
 }
