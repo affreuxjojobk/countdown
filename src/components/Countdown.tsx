@@ -25,13 +25,14 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
 
   return (
     <div className="w-full mt-8">
-      {/* Date Display */}
+      {/*
+	  Date Display 
       <div className="flex justify-center items-center mb-8">
         <h2 className="text-5xl md:text-7xl font-bold tracking-widest animate-pulse-slow">
           06.09.2025
         </h2>
       </div>
-
+*/}
       {/* Countdown Timer */}
       <div className="flex flex-wrap justify-center gap-4 md:gap-8">
         <CountdownUnit value={timeDigits.days} label="DAYS" />

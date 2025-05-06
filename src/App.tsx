@@ -2,7 +2,7 @@ import React from 'react';
 import Countdown from './components/Countdown';
 import ParticleBackground from './components/ParticleBackground';
 import SignupForm from './components/SignupForm';
-import flyerImage from './assets/flyer.jpg';
+import flyerImage from './assets/flyer_countdown.jpeg';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       {/* Main Content Container */}
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 py-8 flex flex-col items-center">
         {/* Flyer */}
-        <div className="w-full max-w-xl mx-auto relative group mb-8">
+        <div className="w-full max-w-sm mx-auto relative group mb-8">
           <img 
             src={flyerImage} 
             alt="Event Flyer" 
