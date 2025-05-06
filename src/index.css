@@ -7,8 +7,31 @@
     @apply font-montserrat text-white bg-black;
     background-image: url('/texture.png');
     background-blend-mode: overlay;
+    
+    height: 100%;           /* Assure que le body prend toute la hauteur de la fenêtre */
+    margin: 0;              /* Retire les marges par défaut */
+    overflow: hidden;       /* Désactive le défilement */
+    display: flex;
+    flex-direction: column;
   }
-  
+
+  html {
+    height: 100%;           /* S'assure que la balise html prend aussi toute la hauteur */
+  }
+
+  .main-content {
+    height: calc(100vh - 50px); /* Ajuste la hauteur de la section principale, en laissant de la place pour le footer */
+    overflow: hidden;       /* Empêche le défilement au sein de cette section */
+    flex-grow: 1;           /* Permet au contenu principal d'occuper toute la place disponible */
+  }
+
+  /*.footer {
+    text-align: center;
+    padding: 10px;
+    /*margin-top: auto;       /* S'assure que le footer reste en bas de la page
+    font-size: 14px;
+  }*/
+
   .font-dancing {
     font-family: 'Dancing Script', cursive;
   }
@@ -41,4 +64,10 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0.7; }
   }
+}
+
+/* Si tu as des images, t'assure que rien ne dépasse de l'écran */
+img {
+  max-width: 100%;
+  height: auto;  /* La hauteur s'ajustera proportionnellement */
 }
