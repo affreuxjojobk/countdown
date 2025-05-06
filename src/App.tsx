@@ -6,7 +6,7 @@ import flyerImage from './assets/flyer_countdown.jpeg';
 
 function App() {
   return (
-    <div className="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-black text-white">
+    <div className="relative h-screen flex flex-col items-center justify-between overflow-hidden bg-black text-white px-4 py-6">
       <ParticleBackground />
       
       {/* Main Content Container */}
@@ -21,7 +21,10 @@ function App() {
           />
         </div>
 
-        <Countdown targetDate="2025-09-06T00:00:00" />
+        <div className="flex flex-col md:flex-row items-center justify-center w-full">
+			<Countdown targetDate="2025-09-06T00:00:00" />
+		</div>
+
         
         <div className="mt-8 w-full max-w-md">
           <SignupForm />

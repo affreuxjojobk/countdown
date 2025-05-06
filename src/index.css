@@ -71,3 +71,22 @@ img {
   max-width: 100%;
   height: auto;  /* La hauteur s'ajustera proportionnellement */
 }
+
+@media (max-height: 700px) {
+  body {
+    font-size: 14px;
+  }
+
+  img {
+    max-height: 180px;
+    object-fit: contain;
+  }
+
+  form {
+    transform: scale(0.95);
+  }
+
+  footer {
+    margin-top: 8px !important;
+  }
+}
