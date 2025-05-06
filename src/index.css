@@ -6,12 +6,17 @@
   html, body {
     height: 100%;
     margin: 0;
+    padding: 0;
     @apply font-montserrat text-white bg-black;
     background-image: url('/texture.png');
     background-blend-mode: overlay;
+    overflow-x: hidden;
+  }
+
+  body {
     display: flex;
     flex-direction: column;
-    overflow-x: hidden;
+    overflow-y: auto; /* Permet le scroll vertical */
   }
 
   .main-content {
@@ -20,8 +25,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    overflow: hidden;
+    padding: 16px;
   }
 
   .font-dancing {
@@ -83,17 +87,6 @@ img {
 }
 
 @media (max-width: 768px) {
-  html, body {
-    height: auto;
-    overflow-y: auto; /* ✅ permet de scroller sur mobile */
-  }
-
-  .main-content {
-    height: auto;
-    padding: 16px;
-    overflow: visible;
-  }
-
   .countdown-container {
     display: flex;
     justify-content: center;
@@ -103,29 +96,41 @@ img {
 
   .countdown {
     display: flex;
-    flex-wrap: nowrap; /* ✅ force les éléments sur une seule ligne */
-    justify-content: space-between;
-    gap: 20px;
+    justify-content: space-evenly;
+    gap: 12px; /* Moins d'espace pour tenir sur une ligne */
+    flex-wrap: nowrap;
     width: 100%;
+    max-width: 320px;
   }
 
   .countdown-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1;
+    font-size: 0.9rem;
   }
 
   .countdown-item span {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+  }
+
+  .main-content {
+    padding: 16px;
   }
 
   .flyer-image {
-    max-width: 90%;
+    max-width: 95%;
+    max-height: 400px;
   }
 
   footer {
     margin-top: 16px;
     font-size: 12px;
+    text-align: center;
+    padding-bottom: 32px;
+  }
+
+  body {
+    overflow-y: auto;
   }
 }
