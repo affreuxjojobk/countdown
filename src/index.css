@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    @apply font-montserrat text-white bg-black;
+    background-image: url('/texture.png');
+    background-blend-mode: overlay;
+    overflow-x: hidden;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Permet le scroll vertical */
+  }
+
+  .main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+  }
+
+  .font-dancing {
+    font-family: 'Dancing Script', cursive;
+  }
+
+  .font-playfair {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer utilities {
+  .shadow-glow {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2),
+                0 0 20px rgba(255, 255, 255, 0.1);
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 1s ease-in forwards;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s infinite;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-height: 700px) {
+  body {
+    font-size: 14px;
+  }
+
+  img {
+    max-height: 180px;
+    object-fit: contain;
+  }
+
+  form {
+    transform: scale(0.95);
+  }
+
+  footer {
+    margin-top: 8px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .countdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .countdown {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 12px; /* Moins d'espace pour tenir sur une ligne */
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+
+  .countdown-item span {
+    font-size: 1.25rem;
+  }
+
+  .main-content {
+    padding: 16px;
+  }
+
+  .flyer-image {
+    max-width: 95%;
+    max-height: 400px;
+  }
+
+  footer {
+    margin-top: 16px;
+    font-size: 12px;
+    text-align: center;
+    padding-bottom: 32px;
+  }
+
+  body {
+    overflow-y: auto;
+  }
+}
