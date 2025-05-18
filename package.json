@@ -10,9 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@sentry/react": "^9.19.0",
     "@sentry/replay": "^7.116.0",
-    "@sentry/tracing": "^7.120.3",
     "axios": "^1.9.0",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
