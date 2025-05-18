@@ -1,26 +1,27 @@
 const axios = require('axios');
+const logger = require('./logger');
 
 const BREVO_API_KEY = process.env.BREVO_API_KEY;
-const LIST_ID = 23; // à adapter si nécessaire
+const LIST_ID = 23;
 
-const addEmailToBrevoList = async (email) => {
+async function addContactToList(email) {
   try {
-    const response = await axios.post(
+    const res = await axios.post(
       `https://api.brevo.com/v3/contacts/lists/${LIST_ID}/contacts/add`,
       { emails: [email] },
       {
         headers: {
           'Content-Type': 'application/json',
-          'api-key': BREVO_API_KEY,
-        },
+          'api-key': BREVO_API_KEY
+        }
       }
     );
-    console.log('✅ Contact ajouté à Brevo:', email);
-    return response.data;
-  } catch (error) {
-    console.error('❌ Erreur Brevo:', error.response?.data || error.message);
-    throw error;
+    logger.info(`✅ Contact ajouté à Brevo: ${email}`);
+    return res.data;
+  } catch (err) {
+    logger.error(`❌ Erreur Brevo: ${err.response?.data || err.message}`);
+    throw err;
   }
-};
+}
 
-module.exports = { addEmailToBrevoList };
+module.exports = { addContactToList };
