@@ -27,20 +27,23 @@ app.use(rateLimit({ windowMs: 15*60*1000, max: 100 }));
 // --- Routes applicatives ---
 app.get('/', (req, res) => res.send('🌴 API OK'));
 
-// Endpoint d’ajout d’email
 app.post('/api/add-email', async (req, res) => {
   const { email } = req.body;
+  logger.info('Tentative ajout email', { email });
+
   if (!validator.isEmail(email || '')) {
+    logger.warn('Email invalide reçu', { email });
     return res.status(400).json({ error: 'Adresse email invalide' });
   }
   try {
     await addContactToList(validator.normalizeEmail(email));
     return res.json({ message: 'Email ajouté' });
   } catch (err) {
-    logger.error('Brevo error', err);
+    logger.error('Erreur Brevo', err); // 🔥 Log complet
     return res.status(500).json({ error: 'Échec ajout email' });
   }
 });
+
 
 // --- Gestion des erreurs non gérées ---
 app.use((err, req, res, next) => {
