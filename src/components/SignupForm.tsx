@@ -19,7 +19,7 @@ const SignupForm: React.FC = () => {
 
     try {
       setLoading(true);
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/add-email`, {
+      const response = await fetch('https://countdown-beta-one.vercel.app/api/add-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
