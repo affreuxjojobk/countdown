@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import "./sentry";
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from "@sentry/tracing";
 import App from './App';
