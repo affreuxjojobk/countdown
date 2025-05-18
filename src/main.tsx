@@ -10,8 +10,8 @@ import ErrorFallback from './components/ErrorFallback';
 Sentry.init({
   dsn: 'https://8a727937cd3b972808a4e43f87086043@o4509332799553536.ingest.de.sentry.io/4509332813447248',
   integrations: [
-    new Sentry.BrowserTracing(), // Déjà inclus dans @sentry/react
-    new Sentry.Replay(),         // Pour le session replay
+    new BrowserTracing(), // Déjà inclus dans @sentry/react
+    new Replay(),         // Pour le session replay
   ],
   // Tracing de performance
   tracesSampleRate: 1.0,
