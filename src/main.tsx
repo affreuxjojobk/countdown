@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import * as Sentry from '@sentry/react';
+import { BrowserTracing } from "@sentry/tracing";
 import App from './App';
 import './index.css';
 import { Replay } from "@sentry/replay"; 
@@ -11,7 +12,7 @@ Sentry.init({
   dsn: 'https://8a727937cd3b972808a4e43f87086043@o4509332799553536.ingest.de.sentry.io/4509332813447248',
   integrations: [
     new BrowserTracing(), // Déjà inclus dans @sentry/react
-    new Replay(),         // Pour le session replay
+    new Sentry.Replay(),         // Pour le session replay
   ],
   // Tracing de performance
   tracesSampleRate: 1.0,
