@@ -24,6 +24,11 @@ app.use(cors({
 app.use(json({ limit: '100kb' }));
 app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 
+// --- Route GET / pour test ---
+app.get('/', (req, res) => {
+  res.status(200).send('🚀 BeautifulKreyol API is running!');
+});
+
 // --- Route de ping pour UptimeRobot ---
 app.get('/ping', (req, res) => {
   res.status(200).send('pong');
