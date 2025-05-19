@@ -34,16 +34,10 @@ app.get('/ping', (req, res) => {
   res.status(200).send('pong');
 });
 
-// --- Route sécurisée d'ajout d'email ---
+// --- Route d'ajout d'email (sans token) ---
 app.post('/api/add-email', async (req, res) => {
-  const { email, token } = req.body;
+  const { email } = req.body;
   logger.info('Tentative ajout email', { email });
-
-  // 🔐 Vérification du token
-  if (token !== process.env.AUTH_TOKEN) {
-    logger.warn('Token invalide');
-    return res.status(401).json({ error: 'Unauthorized' });
-  }
 
   // ✅ Vérification email
   if (!validator.isEmail(email || '')) {
@@ -69,7 +63,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-// --- Lancement ---
 app.listen(PORT, () => {
   logger.info(`Serveur en ${process.env.NODE_ENV} sur port ${PORT}`);
 });
