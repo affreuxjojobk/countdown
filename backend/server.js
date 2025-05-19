@@ -1,11 +1,11 @@
 require('dotenv').config();
-const express           = require('express');
-const helmet            = require('helmet');
-const cors              = require('cors');
-const rateLimit         = require('express-rate-limit');
-const { json }          = require('body-parser');
-const validator         = require('validator');
-const logger            = require('./utils/logger');
+const express = require('express');
+const helmet = require('helmet');
+const cors = require('cors');
+const rateLimit = require('express-rate-limit');
+const { json } = require('body-parser');
+const validator = require('validator');
+const logger = require('./utils/logger');
 const { addContactToList } = require('./utils/brevo');
 
 const app = express();
@@ -22,28 +22,38 @@ app.use(cors({
   ]
 }));
 app.use(json({ limit: '100kb' }));
-app.use(rateLimit({ windowMs: 15*60*1000, max: 100 }));
+app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 
-// --- Routes applicatives ---
-app.get('/', (req, res) => res.send('🌴 API OK'));
+// --- Route de ping pour UptimeRobot ---
+app.get('/ping', (req, res) => {
+  res.status(200).send('pong');
+});
 
+// --- Route sécurisée d'ajout d'email ---
 app.post('/api/add-email', async (req, res) => {
-  const { email } = req.body;
+  const { email, token } = req.body;
   logger.info('Tentative ajout email', { email });
 
+  // 🔐 Vérification du token
+  if (token !== process.env.AUTH_TOKEN) {
+    logger.warn('Token invalide');
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  // ✅ Vérification email
   if (!validator.isEmail(email || '')) {
     logger.warn('Email invalide reçu', { email });
     return res.status(400).json({ error: 'Adresse email invalide' });
   }
+
   try {
     await addContactToList(validator.normalizeEmail(email));
     return res.json({ message: 'Email ajouté' });
   } catch (err) {
-    logger.error('Erreur Brevo', err); // 🔥 Log complet
+    logger.error('Erreur Brevo', err);
     return res.status(500).json({ error: 'Échec ajout email' });
   }
 });
-
 
 // --- Gestion des erreurs non gérées ---
 app.use((err, req, res, next) => {

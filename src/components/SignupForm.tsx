@@ -24,7 +24,7 @@ const SignupForm: React.FC = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, token: process.env.REACT_APP_AUTH_TOKEN }),
       });
 
       if (response.ok) {
