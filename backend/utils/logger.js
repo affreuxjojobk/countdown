@@ -3,6 +3,8 @@
 const { createLogger, transports, format } = require('winston');
 const { combine, timestamp, printf, splat } = format;
 
+// Assure-toi que le dossier 'logs' existe : mkdir -p backend/logs
+
 const logger = createLogger({
   level: 'info',
   format: combine(
@@ -18,12 +20,12 @@ const logger = createLogger({
   transports: [
     // Affiche tout dans la console
     new transports.Console(),
-    // Écrit uniquement les erreurs dans un fichier séparé
-    new transports.File({
-      filename: 'logs/error.log',
-      level: 'error'
-    })
-	 new transports.File({ filename: 'logs/warnings.log', level: 'info' }),
+    // Écrit tout à partir de 'info' dans un fichier combined.log
+    new transports.File({ filename: 'logs/combined.log', level: 'info' }),
+    // Écrit uniquement les erreurs dans error.log
+    new transports.File({ filename: 'logs/error.log', level: 'error' }),
+    // Écrit les warnings et les infos dans warnings.log si besoin
+    new transports.File({ filename: 'logs/warnings.log', level: 'warn' })
   ]
 });
 
